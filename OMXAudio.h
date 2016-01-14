@@ -86,7 +86,7 @@ public:
   unsigned int GetAudioRenderingLatency();
   float GetMaxLevel(double &pts);
   COMXAudio();
-  bool Initialize(OMXClock *clock, const OMXAudioConfig &config, uint64_t channelMap, unsigned int uiBitsPerSample);
+  bool Initialize(OMXClock *clock, const OMXAudioConfig &config, uint64_t channelMap, unsigned int uiBitsPerSample, double iSpeed=1000.0);
   ~COMXAudio();
   bool PortSettingsChanged();
 

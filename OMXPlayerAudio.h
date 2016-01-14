@@ -83,6 +83,8 @@ protected:
   void UnLockDecoder();
 private:
 public:
+  bool SetSpeed(double iSpeed);
+
   OMXPlayerAudio();
   ~OMXPlayerAudio();
   bool Open(OMXClock *av_clock, const OMXAudioConfig &config, OMXReader *omx_reader);

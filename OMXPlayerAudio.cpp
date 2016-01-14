@@ -412,6 +412,22 @@ bool OMXPlayerAudio::IsPassthrough(COMXStreamInfo hints)
   return passthrough;
 }
 
+bool OMXPlayerAudio::SetSpeed(double iSpeed)
+{
+  bool bAudioRenderOpen = false;
+  if(m_decoder)
+  {
+    bAudioRenderOpen = m_decoder->Initialize(m_av_clock, m_config, m_pAudioCodec->GetChannelMap(), m_pAudioCodec->GetBitsPerSample(), iSpeed);
+  }
+  if(!bAudioRenderOpen)
+  {
+    CloseDecoder();
+    return false;
+  }
+
+  return true;
+}
+
 bool OMXPlayerAudio::OpenDecoder()
 {
   bool bAudioRenderOpen = false;

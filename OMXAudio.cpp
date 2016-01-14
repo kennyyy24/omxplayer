@@ -386,7 +386,7 @@ static unsigned count_bits(uint64_t value)
   return bits;
 }
 
-bool COMXAudio::Initialize(OMXClock *clock, const OMXAudioConfig &config, uint64_t channelMap, unsigned int uiBitsPerSample)
+bool COMXAudio::Initialize(OMXClock *clock, const OMXAudioConfig &config, uint64_t channelMap, unsigned int uiBitsPerSample, double iSpeed)
 {
   CSingleLock lock (m_critSection);
   OMX_ERRORTYPE omx_err;
@@ -404,6 +404,8 @@ bool COMXAudio::Initialize(OMXClock *clock, const OMXAudioConfig &config, uint64
 
   if(m_config.hints.samplerate == 0)
     return false;
+  
+  m_config.hints.samplerate*=iSpeed/1000.;
 
   m_av_clock = clock;
 
